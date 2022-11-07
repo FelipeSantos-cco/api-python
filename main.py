@@ -34,7 +34,7 @@ def consultar_prefessores():
 
 
 
-# ------ TB LAB -----------
+# ------ TB LABORATÓRIOS -----------
 
 # Consultar TODOS OS LABS 
 @app.route('/labs', methods=['GET'])
@@ -44,6 +44,14 @@ def consultar_labs():
     return jsonify(labs)
 
 
+# ------ TB PEDMNT -----------
+
+# Consultar TODOS OS PEDIDOS DE MANUTENÇÃO
+@app.route('/pedmnt', methods=['GET'])
+def consultar_pedmnt():
+    mycursor.execute("SELECT * FROM pedmnt")
+    pedidos = mycursor.fetchall()
+    return jsonify(pedidos)
 
 # Rodar API
 app.run(port=8000,host='localhost',debug=True)
