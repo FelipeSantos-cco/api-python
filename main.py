@@ -49,9 +49,20 @@ def consultar_labs():
 # Consultar TODOS OS PEDIDOS DE MANUTENÇÃO
 @app.route('/pedmnt', methods=['GET'])
 def consultar_pedmnt():
-    mycursor.execute("SELECT * FROM pedmnt")
+    mycursor.execute("SELECT * FROM tbpedmnt")
     pedidos = mycursor.fetchall()
     return jsonify(pedidos)
+
+
+# ------ TB RESPMNT ----------- 
+
+# Consultar TODOS AS RESPOSTAS DE MANUTENÇÃO
+@app.route('/respmnt', methods=['GET'])
+def consultar_respmnt():
+    mycursor.execute("SELECT * FROM tbrespmnt")
+    respostas = mycursor.fetchall()
+    return jsonify(respostas)
+
 
 # Rodar API
 app.run(port=8000,host='localhost',debug=True)
