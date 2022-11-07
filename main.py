@@ -34,4 +34,16 @@ def consultar_prefessores():
 
 
 
+# ------ TB LAB -----------
+
+# Consultar TODOS OS LABS 
+@app.route('/labs', methods=['GET'])
+def consultar_labs():
+    mycursor.execute("SELECT * FROM tbLab")
+    labs = mycursor.fetchall()
+    return jsonify(labs)
+
+
+
+# Rodar API
 app.run(port=8000,host='localhost',debug=True)
