@@ -12,7 +12,33 @@ app = Flask(__name__)
 mydb = mysql.connector.connect(host="localhost", user="root", password="", database="bdetecapi")
 mycursor = mydb.cursor()
 
+
+# index
+@app.route('/', methods=['GET'])
+def index():
+    geral = """
+            /aluno/help         => Ajuda sobre TB aluno </br>
+            /professores/help   => Ajuda sobre TB prof  </br>
+            /labs/help          => Ajuda sobre TB labs  </br>
+            /pedmnt/help        => Ajuda sobre TB PedMnt (Pedidos de Manutenção) </br>
+            /respmnt/help       => Ajuda sobre TB RespMnt (Resposta de Manutenção)
+            """
+    return (geral)
+
+
+
 # ------ TB ALUNOS -----------
+
+# HELP
+@app.route('/aluno/help', methods=['GET'])
+def help_alunos():
+    help = """
+            /alunos = Consulta geral </br>
+            /aluno/id = Consulta por ID do aluno </br>
+            /aluno/nome/rm/turma/periodo/user/senha = Cadastro de aluno
+            """
+    return (help)
+
 
 # Consultar TODOS OS ALUNOS
 @app.route('/alunos', methods=['GET'])
@@ -30,7 +56,9 @@ def consultar_aluno_id(id):
     return jsonify(aluno)
 
 # CADASTRAR ALUNO
-@app.route('/aluno/<str>')
+@app.route('/aluno/<nome>/<rm>/<turma>/<periodo>/<user>/<senha>')
+def cadastrar_aluno(nome,rm,turma,periodo,user,senha):
+    
 
 # ------ TB PROF -----------
 
