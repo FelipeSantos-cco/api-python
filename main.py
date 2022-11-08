@@ -29,6 +29,9 @@ def consultar_aluno_id(id):
     aluno = mycursor.fetchall()
     return jsonify(aluno)
 
+# CADASTRAR ALUNO
+@app.route('/aluno/<str>')
+
 # ------ TB PROF -----------
 
 # Consultar TODOS OS PROFESSORES
