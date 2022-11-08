@@ -21,6 +21,13 @@ def consultar_alunos():
     alunos = mycursor.fetchall()
     return jsonify(alunos)
 
+# Consultar ALUNO PELO ID
+@app.route('/aluno/<int:id>',methods=['GET'])
+def consultar_aluno_id(id):
+    id = str(id)
+    mycursor.execute("SELECT idAluno, nomeAluno, rmAluno, turmaAluno, periodoAluno FROM tbAluno WHERE idAluno = " + id)
+    aluno = mycursor.fetchall()
+    return jsonify(aluno)
 
 # ------ TB PROF -----------
 
