@@ -60,6 +60,19 @@ def cadastro_pedido():
 
     return jsonify(ok)
 
+# ======== DELETE ============
+
+# @app.route('/deletar/<int:id>', methods=['DELETE'])
+# def deletar_pedido(id):
+#     id = str(id)
+#     delete = "DELETE FROM tbpedido WHERE idPedido = "+id
+#     cursor.execute(delete)
+#     mydb.commit()
+#     cursor.close()
+
+#     ok = "ok"
+#     return jsonify(ok)
+
 
 # Rodar o servidor
 app.run(port=8000,host='localhost',debug=True)
