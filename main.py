@@ -66,17 +66,17 @@ def cadastro_pedido():
 
 # ======== DELETE ============
 
-# @app.route('/deletar/<int:id>', methods=['DELETE'])
-# def deletar_pedido(id):
-#     id = str(id)
-#     delete = "DELETE FROM tbpedido WHERE idPedido = "+id
-#     cursor.execute(delete)
-#     mydb.commit()
-#     cursor.close()
+@app.route('/deletar/<int:id>', methods=['DELETE'])
+def deletar_pedido(id):
+    id = str(id)
+    delete = "DELETE FROM tbpedido WHERE idPedido = "+id
+    cursor.execute(delete)
+    mydb.commit()
 
-#     ok = "ok"
-#     return jsonify(ok)
+    ok = "ok"
+    return jsonify(ok)
 
+# ======== PUT ===============
 
 # Rodar o servidor
 app.run(port=80, host='192.168.0.105',debug=True)
