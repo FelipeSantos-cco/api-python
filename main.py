@@ -26,7 +26,6 @@ def index():
     return (geral)
 
 
-
 # ------ TB ALUNOS -----------
 
 # HELP
@@ -35,7 +34,7 @@ def help_alunos():
     help = """
             /alunos = Consulta geral </br>
             /aluno/id = Consulta por ID do aluno </br>
-            /aluno/nome/rm/turma/periodo/user/senha = Cadastro de aluno
+            /aluno/cadastrar = Cadastro de aluno
             """
     return (help)
 
@@ -56,9 +55,12 @@ def consultar_aluno_id(id):
     return jsonify(aluno)
 
 # CADASTRAR ALUNO
-@app.route('/aluno/<nome>/<rm>/<turma>/<periodo>/<user>/<senha>')
-def cadastrar_aluno(nome,rm,turma,periodo,user,senha):
-    
+@app.route('/aluno/cadastrar',methods=[POST])
+def cadastrar_aluno():
+    mycursor.execute("SELECT * FROM tbProf")
+    profs = mycursor.fetchall()
+
+
 
 # ------ TB PROF -----------
 
