@@ -4,7 +4,7 @@ import mysql.connector
 app = Flask(__name__)
 
 mydb = mysql.connector.connect(host="localhost", user="root", password="", database="bdetecapi2")
-mycursor = mydb.cursor()
+cursor = mydb.cursor()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -15,15 +15,15 @@ def index():
 
 @app.route('/consulta', methods=['GET'])
 def consulta_geral():
-    mycursor.execute("SELECT * FROM tbpedido")
-    pedidos = mycursor.fetchall()
+    cursor.execute("SELECT * FROM tbpedido")
+    pedidos = cursor.fetchall()
     return jsonify(pedidos)
 
 @app.route('/consulta/<int:id>', methods=['GET'])
 def consulta_id(id):
     id = str(id)
-    mycursor.execute("SELECT idPedido, periodo, curso, lab, computador, titulo, descPedido, nomeProf, nomeAluno	FROM tbPedido WHERE idPedido = "+id)
-    pedidos = mycursor.fetchall()
+    cursor.execute("SELECT idPedido, periodo, curso, lab, computador, titulo, descPedido, nomeProf, nomeAluno	FROM tbPedido WHERE idPedido = "+id)
+    pedidos = cursor.fetchall()
     return jsonify(pedidos)
 
 #============== POST ================
@@ -43,12 +43,15 @@ def cadastro_pedido():
     nomeAluno = request_data["nomeAluno"]
     turma =  request_data["turma"]
 
-    mycursor.execute("INSERT INTO tbpedido (periodo, curso, lab, computador, titulo, descPedido, nomeProf, nomeAluno, turma) VALUES('"+periodo+"', '"+curso+"', '"+lab+"', '"+computador+"', '"+titulo+"', '"+descPedido+"','"+nomeProf+"','"+nomeAluno+"', '"+turma+"' );")
-    cadastro = mycursor.fetchall()
+    insert = "INSERT INTO tbpedido (periodo, curso, lab, computador, titulo, descPedido, nomeProf, nomeAluno, turma) VALUES('"+periodo+"', '"+curso+"', '"+lab+"', '"+computador+"', '"+titulo+"', '"+descPedido+"','"+nomeProf+"','"+nomeAluno+"', '"+turma+"' );"
+    
+    cursor.execute(insert)
+    mydb.commit()
+    cursor.close()
+    
     ok = "ok"
-    return jsonify(ok, cadastro)
 
-
+    return jsonify(ok)
 
 
 
