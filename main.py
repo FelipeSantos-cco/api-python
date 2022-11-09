@@ -75,4 +75,4 @@ def cadastro_pedido():
 
 
 # Rodar o servidor
-app.run(port=8000,host='localhost',debug=True)
+app.run(port=80, host='192.168.0.105',debug=True)
