@@ -57,7 +57,7 @@ def consultar_aluno_id(id):
 # CADASTRAR ALUNO
 @app.route('/aluno/cadastrar',methods=[POST])
 def cadastrar_aluno():
-    mycursor.execute("SELECT * FROM tbProf")
+    mycursor.execute("SELECT * FROM")
     profs = mycursor.fetchall()
 
 
