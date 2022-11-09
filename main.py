@@ -14,7 +14,12 @@ except:
 
 @app.route('/', methods=['GET'])
 def index():
-    geral = "<h1>Consultas</h1>"
+    geral = """
+            <h1>Consultas</h1>
+            <table>
+                <tr><tr>
+            </table>
+            """
     return (geral)
 
 #=============== GET ==================
@@ -53,7 +58,6 @@ def cadastro_pedido():
     
     cursor.execute(insert)
     mydb.commit()
-    cursor.close()
     
     #Verificação no Aplicativo
     ok = "ok"
