@@ -17,7 +17,10 @@ def index():
     geral = """
             <h1>Consultas</h1>
             <table>
-                <tr><tr>
+                <tr><td>GET</td> <td>/consulta</td></tr>
+                <tr><td>GET</td> <td>/consulta/[id]</td></tr>
+                <tr><td>POST</td> <td>/cadastro</td></tr>
+                <tr><td>DELETE</td> <td>/deletar/[id]</td></tr>
             </table>
             """
     return (geral)
@@ -79,4 +82,4 @@ def deletar_pedido(id):
 # ======== PUT ===============
 
 # Rodar o servidor
-app.run(port=80, host='192.168.0.105',debug=True)
+app.run(port=80, host='localhost',debug=True)
