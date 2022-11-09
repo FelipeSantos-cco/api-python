@@ -3,8 +3,14 @@ import mysql.connector
 
 app = Flask(__name__)
 
-mydb = mysql.connector.connect(host="localhost", user="root", password="", database="bdetecapi2")
-cursor = mydb.cursor()
+try: 
+    mydb = mysql.connector.connect(host="localhost", user="root", password="", database="bdetecapi2")
+    cursor = mydb.cursor()
+
+    print("Conexão com o banco OK\n\n\n")
+except:
+    print("\nErro na conexão com o Banco\n")
+    exit()
 
 @app.route('/', methods=['GET'])
 def index():
@@ -49,12 +55,11 @@ def cadastro_pedido():
     mydb.commit()
     cursor.close()
     
+    #Verificação no Aplicativo
     ok = "ok"
 
     return jsonify(ok)
 
 
-
-
-
+# Rodar o servidor
 app.run(port=8000,host='localhost',debug=True)
