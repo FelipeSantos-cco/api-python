@@ -14,3 +14,19 @@ def index():
 @app.route('/consulta', methods=['GET'])
 def consulta_geral():
     mycursor.execute("SELECT * FROM tbpedido")
+    pedidos = mycursor.fetchall()
+    return jsonify(pedidos)
+
+@app.route('/consulta/<int:id>', methods=['GET'])
+def consulta_id():
+    mycursor.execute("SELECT ")
+
+
+
+
+
+
+
+
+
+app.run(port=8000,host='localhost',debug=True)
