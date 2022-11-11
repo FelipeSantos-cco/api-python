@@ -20,6 +20,7 @@ def index():
                 <tr><td>GET</td> <td>/consulta</td></tr>
                 <tr><td>GET</td> <td>/consulta/[id]</td></tr>
                 <tr><td>POST</td> <td>/cadastro</td></tr>
+                <tr><td>PUT</td> <td>/alterar</td></tr>
                 <tr><td>DELETE</td> <td>/deletar/[id]</td></tr>
             </table>
             """
@@ -80,6 +81,20 @@ def deletar_pedido(id):
     return jsonify(ok)
 
 # ======== PUT ===============
+
+@app.route('/alterar/<int:id>', methods=['PUT'])
+def alterar_pedido(id):
+    id = str(id)
+
+    request_data = request.get_json()
+
+    titulo = request_data["titulo"]
+    lab = request_data["lab"]
+    computador = request_data["computador"]
+    descPedido = request_data["descPedido"]
+
+    alterar = "UPDATE tbpedido SET tbpedido.titulo = '"+titulo+"', tbpedido.lab = '"+lab+"', tbpedido.computador = '"+computador+"', tbpedido.descPedido = '"+descPedido+"' WHERE tbpedido.idPedido = "+id+";"
+
 
 # Rodar o servidor
 app.run(port=80, host='localhost',debug=True)
