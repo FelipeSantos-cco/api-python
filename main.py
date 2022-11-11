@@ -92,8 +92,17 @@ def alterar_pedido(id):
     lab = request_data["lab"]
     computador = request_data["computador"]
     descPedido = request_data["descPedido"]
+    ok = "ok"
 
-    alterar = "UPDATE tbpedido SET tbpedido.titulo = '"+titulo+"', tbpedido.lab = '"+lab+"', tbpedido.computador = '"+computador+"', tbpedido.descPedido = '"+descPedido+"' WHERE tbpedido.idPedido = "+id+";"
+    try:
+        alterar = "UPDATE tbpedido SET tbpedido.titulo = '"+titulo+"', tbpedido.lab = '"+lab+"', tbpedido.computador = '"+computador+"', tbpedido.descPedido = '"+descPedido+"' WHERE tbpedido.idPedido = "+id+";"
+        cursor.execute(alterar)
+        mydb.commit()
+
+        return jsonify(ok)
+
+    except:
+        print("A alteração deu errado")
 
 
 # Rodar o servidor
